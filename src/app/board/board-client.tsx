@@ -22,7 +22,10 @@ export default function BoardPage() {
 
   const userId = searchParams.get("userId") ?? "";
   const currentUser = useMemo(() => state.users.find((user) => user.id === userId), [state.users, userId]);
-
+  const currentUserPoints = useMemo(
+    () => (currentUser ? getUserTotalPoints(state, currentUser.id) : 0),
+    [state, currentUser],
+  );
 
   if (!currentUser) {
     return (
@@ -67,7 +70,7 @@ export default function BoardPage() {
       <section className="card">
         <h2>Signed in as {currentUser.name}</h2>
         <p>Draws remaining: {drawsRemaining}</p>
-        <p>Total points: {getUserTotalPoints(state, currentUser.id)}</p>
+        <p>Total points: {currentUserPoints}</p>
         <button type="button" onClick={handleDraw} className="buttonLink">
           Draw random team
         </button>
