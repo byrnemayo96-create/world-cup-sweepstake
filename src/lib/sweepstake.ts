@@ -1,8 +1,8 @@
 import { SweepstakeState, Team, TeamStage, User } from "@/lib/types";
 
-export const MAX_TEAMS_PER_USER = 9;
-export const TOTAL_ASSIGNED_TEAMS = 45;
-export const FINAL_UNASSIGNED_TEAMS = 3;
+export const MAX_TEAMS_PER_USER = 8;
+export const TOTAL_ASSIGNED_TEAMS = 48;
+export const FINAL_UNASSIGNED_TEAMS = 0;
 
 export const STAGE_POINTS: Record<TeamStage, number> = {
   in_tournament: 0,
@@ -46,12 +46,12 @@ export const drawTeamForUser = (
   }
 
   if (getDrawsRemaining(state, userId) <= 0) {
-    throw new Error("This user has already drawn the maximum of 9 teams.");
+    throw new Error("This user has already drawn the maximum of 8 teams.");
   }
 
   const unassignedTeams = getUnassignedTeams(state);
   if (unassignedTeams.length <= FINAL_UNASSIGNED_TEAMS) {
-    throw new Error("Only the final 3 unassigned teams remain.");
+    throw new Error("No unassigned teams remain.");
   }
 
   const randomIndex = Math.floor(rng() * unassignedTeams.length);

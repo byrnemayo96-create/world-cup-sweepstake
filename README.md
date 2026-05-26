@@ -4,10 +4,10 @@ A lightweight Next.js + TypeScript scaffold for running a 2026 World Cup sweepst
 
 ## MVP features included
 
-- 5 preset users (name-select sign-in, no full auth)
+- 6 preset users (name-select sign-in, no full auth)
 - 48 seeded teams with placeholder badge paths
-- Draw logic (1 team per click, max 9 teams per user)
-- Global draw cap of 45 assigned teams (3 left unassigned)
+- Draw logic (1 team per click, max 8 teams per user)
+- Global draw cap of 48 assigned teams (0 left unassigned)
 - No duplicate assignments
 - Scoring by tournament stage:
   - Group stage exit: 0
@@ -43,12 +43,12 @@ Then open `http://localhost:3000`.
 
 ## Project structure
 
-- `/src/app/page.tsx` – sign-in page (select one of 5 users)
+- `/src/app/page.tsx` – sign-in page (select one of 6 users)
 - `/src/app/board/page.tsx` – main sweepstake board
 - `/src/app/admin/page.tsx` – admin stage/result updater
 - `/src/lib/data.ts` – preset users, 48 teams, stage options
 - `/src/lib/sweepstake.ts` – draw rules, scoring, leaderboard logic
-- `/src/lib/useSweepstakeState.ts` – local persisted state (easy to swap for DB/API later)
+- `/src/lib/useSweepstakeState.tsx` – local persisted state (easy to swap for DB/API later)
 
 ## Replacing placeholder team data and badges
 

@@ -5,6 +5,7 @@ import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useSweepstakeState } from "@/lib/useSweepstakeState";
 import {
+  MAX_TEAMS_PER_USER,
   drawTeamForUser,
   getDrawsRemaining,
   getLeaderboard,
@@ -79,7 +80,9 @@ export default function BoardClientPage() {
 
       <section className="sectionGrid">
         <div className="card">
-          <h2>Your teams ({currentUserTeams.length}/9)</h2>
+          <h2>
+            Your teams ({currentUserTeams.length}/{MAX_TEAMS_PER_USER})
+          </h2>
           <ul className="teamList">
             {currentUserTeams.map((team) => (
               <li key={team.id} className={`teamItem ${getTeamStatusClass(team)}`}>
@@ -123,7 +126,7 @@ export default function BoardClientPage() {
             return (
               <div key={user.id} className="subCard">
                 <h3>
-                  {user.name} ({teams.length}/9)
+                  {user.name} ({teams.length}/{MAX_TEAMS_PER_USER})
                 </h3>
                 <ul className="teamList compact">
                   {teams.map((team) => (

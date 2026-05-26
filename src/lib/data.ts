@@ -6,6 +6,7 @@ export const PRESET_USERS: User[] = [
   { id: "user-3", name: "Casey" },
   { id: "user-4", name: "Drew" },
   { id: "user-5", name: "Ellis" },
+  { id: "user-6", name: "Finley" },
 ];
 
 export const TEAM_STAGES: { value: TeamStage; label: string }[] = [
