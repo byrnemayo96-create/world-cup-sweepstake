@@ -15,7 +15,7 @@ import {
   getUserTotalPoints,
 } from "@/lib/sweepstake";
 
-export default function BoardPage() {
+export default function BoardClientPage() {
   const { state, setState } = useSweepstakeState();
   const searchParams = useSearchParams();
   const [message, setMessage] = useState<string>("");
