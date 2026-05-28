@@ -1,37 +1,76 @@
 import { SweepstakeState, TeamStage, User } from "@/lib/types";
 
 export const PRESET_USERS: User[] = [
-  { id: "user-1", name: "Alex" },
-  { id: "user-2", name: "Blake" },
-  { id: "user-3", name: "Casey" },
-  { id: "user-4", name: "Drew" },
-  { id: "user-5", name: "Ellis" },
-  { id: "user-6", name: "Finley" },
+  { id: "user-1", name: "Astrid" },
+  { id: "user-2", name: "Byrne" },
+  { id: "user-3", name: "Dayane" },
+  { id: "user-4", name: "Ricky" },
+  { id: "user-5", name: "Steve" },
+  { id: "user-6", name: "Tasha" },
 ];
 
 export const TEAM_STAGES: { value: TeamStage; label: string }[] = [
   { value: "in_tournament", label: "Not eliminated" },
-  { value: "group_stage_exit", label: "Group stage exit" },
+  { value: "group_stage_exit", label: "Group Stage Exit" },
   { value: "round_of_32", label: "Round of 32" },
   { value: "round_of_16", label: "Round of 16" },
-  { value: "quarter_final", label: "Quarter-final" },
+  { value: "quarter_final", label: "Quarter-Final" },
   { value: "fourth_place", label: "4th place" },
   { value: "third_place", label: "3rd place" },
   { value: "runner_up", label: "Runner-up" },
   { value: "winner", label: "Winner" },
 ];
 
-export const PRESET_TEAMS = Array.from({ length: 48 }, (_, index) => {
-  const number = String(index + 1).padStart(2, "0");
-
-  return {
-    id: `team-${number}`,
-    name: `Team ${number}`,
-    badgePath: `/assets/teams/team-${number}.png`,
-    assignedUserId: null,
-    stage: "in_tournament" as TeamStage,
-  };
-});
+export const PRESET_TEAMS = [
+{ id: `team-1`, name: `Algeria`, badgePath: `/assets/ALG.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-2`, name: `Argentina`, badgePath: `/assets/ARG.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-3`, name: `Australia`, badgePath: `/assets/AUS.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-4`, name: `Austria`, badgePath: `/assets/AUT.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-5`, name: `Belgium`, badgePath: `/assets/BEL.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-6`, name: `Bosnia & Herzegovina`, badgePath: `/assets/BIH.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-7`, name: `Brazil`, badgePath: `/assets/BRA.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-8`, name: `Canada`, badgePath: `/assets/CAN.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-9`, name: `Cape Verde`, badgePath: `/assets/CPV.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-10`, name: `Colombia`, badgePath: `/assets/COL.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-11`, name: `Croatia`, badgePath: `/assets/CRO.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-12`, name: `Curacao`, badgePath: `/assets/CUW.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-13`, name: `Czechia`, badgePath: `/assets/CZE.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-14`, name: `DR Congo`, badgePath: `/assets/COD.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-15`, name: `Ecuador`, badgePath: `/assets/ECU.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-16`, name: `Egypt`, badgePath: `/assets/EGY.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-17`, name: `England`, badgePath: `/assets/ENG.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-18`, name: `France`, badgePath: `/assets/FRA.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-19`, name: `Germany`, badgePath: `/assets/GER.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-20`, name: `Ghana`, badgePath: `/assets/GHA.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-21`, name: `Haiti`, badgePath: `/assets/HAI.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-22`, name: `Iran`, badgePath: `/assets/IRN.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-23`, name: `Iraq`, badgePath: `/assets/IRQ.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-24`, name: `Ivory Coast`, badgePath: `/assets/CIV.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-25`, name: `Japan`, badgePath: `/assets/JPN.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-26`, name: `Jordan`, badgePath: `/assets/JOR.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-27`, name: `Mexico`, badgePath: `/assets/MEX.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-28`, name: `Morocco`, badgePath: `/assets/MAR.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-29`, name: `Netherlands`, badgePath: `/assets/NED.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-30`, name: `New Zealand`, badgePath: `/assets/NZL.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-31`, name: `Norway`, badgePath: `/assets/NOR.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-32`, name: `Panama`, badgePath: `/assets/PAN.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-33`, name: `Paraguay`, badgePath: `/assets/PAR.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-34`, name: `Portugal`, badgePath: `/assets/POR.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-35`, name: `Qatar`, badgePath: `/assets/QAT.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-36`, name: `Saudi Arabia`, badgePath: `/assets/KSA.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-37`, name: `Scotland`, badgePath: `/assets/SCO.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-38`, name: `Senegal`, badgePath: `/assets/SEN.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-39`, name: `South Africa`, badgePath: `/assets/RSA.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-40`, name: `South Korea`, badgePath: `/assets/KOR.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-41`, name: `Spain`, badgePath: `/assets/ESP.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-42`, name: `Sweden`, badgePath: `/assets/SWE.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-43`, name: `Switzerland`, badgePath: `/assets/SUI.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-44`, name: `Tunisia`, badgePath: `/assets/TUN.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-45`, name: `Turkey`, badgePath: `/assets/TUR.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-46`, name: `USA`, badgePath: `/assets/USA.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-47`, name: `Uruguay`, badgePath: `/assets/URU.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+{ id: `team-48`, name: `Uzbekistan`, badgePath: `/assets/UZB.png`, assignedUserId: null, stage: "in_tournament" as TeamStage, },
+];
 
 export const createInitialState = (): SweepstakeState => ({
   users: PRESET_USERS.map((user) => ({ ...user })),

@@ -4,7 +4,7 @@ import Link from "next/link";
 export default function Home() {
   return (
     <main className="container">
-      <h1>World Cup 2026 Sweepstake</h1>
+      <h1>Football World Cup 2026 Sweepstake</h1>
       <p className="muted">Select your name to sign in and start drawing teams.</p>
 
       <section className="cardGrid">
@@ -14,10 +14,6 @@ export default function Home() {
           </Link>
         ))}
       </section>
-
-      <p className="muted">
-        Need to update results? Visit the <Link href="/admin">admin page</Link>.
-      </p>
     </main>
   );
 }
