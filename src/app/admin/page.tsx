@@ -12,7 +12,7 @@ const ADMIN_PASSWORD = "wc2026";
 const ADMIN_SESSION_KEY = "world-cup-admin-unlocked";
 
 export default function AdminPage() {
-  const { state, setState, reset } = useSweepstakeState();
+  const { state, setState, reset, isLoading } = useSweepstakeState();
   const [password, setPassword] = useState("");
   const [isUnlocked, setIsUnlocked] = useState(false);
   const [error, setError] = useState("");
@@ -69,6 +69,20 @@ export default function AdminPage() {
     );
   }
 
+  if (isLoading) {
+  return (
+    <main className="container">
+      <div className="titleRow">
+        <h1>Admin: Team results</h1>
+        <Link href="/" className="buttonLink secondary">
+          Sign-in page
+        </Link>
+      </div>
+      <p className="muted">Loading sweepstake...</p>
+    </main>
+  );
+}
+
   return (
     <main className="container">
       <div className="titleRow">
@@ -110,11 +124,15 @@ export default function AdminPage() {
               <span>{owner}</span>
               <select
                 value={team.stage}
-                onChange={(event) =>
-                  setState((prevState) =>
-                    updateTeamStage(prevState, team.id, event.target.value as TeamStage),
-                  )
-                }
+                onChange={async (event) => {
+  try {
+    await setState((prevState) =>
+      updateTeamStage(prevState, team.id, event.target.value as TeamStage),
+    );
+  } catch (error) {
+    console.error("Failed to update team stage", error);
+  }
+}}
               >
                 {TEAM_STAGES.map((stage) => (
                   <option key={stage.value} value={stage.value}>

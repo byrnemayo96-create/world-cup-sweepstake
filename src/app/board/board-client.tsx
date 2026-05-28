@@ -18,7 +18,7 @@ import {
 } from "@/lib/sweepstake";
 
 export default function BoardClientPage() {
-  const { state, setState } = useSweepstakeState();
+  const { state, setState, isLoading } = useSweepstakeState();
   const searchParams = useSearchParams();
   const [message, setMessage] = useState<string>("");
 
@@ -28,6 +28,15 @@ export default function BoardClientPage() {
     () => (currentUser ? getUserTotalPoints(state, currentUser.id) : 0),
     [state, currentUser],
   );
+
+  if (isLoading) {
+  return (
+    <main className="container">
+      <h1>World Cup 2026 Sweepstake</h1>
+      <p className="muted">Loading sweepstake...</p>
+    </main>
+  );
+}
 
   if (!currentUser) {
     return (
@@ -46,14 +55,16 @@ export default function BoardClientPage() {
   const drawsRemaining = getDrawsRemaining(state, currentUser.id);
   const leaderboard = getLeaderboard(state);
 
-  const handleDraw = () => {
-    try {
-      setState((prevState) => drawTeamForUser(prevState, currentUser.id));
-      setMessage("Team drawn successfully.");
-    } catch (error) {
-      setMessage(error instanceof Error ? error.message : "Unable to draw a team.");
-    }
-  };
+  const handleDraw = async () => {
+  try {
+    console.log("Drawing for user", currentUser);
+    await setState((prevState) => drawTeamForUser(prevState, currentUser.id));
+    setMessage("Team drawn successfully.");
+  } catch (error) {
+    console.error("Draw failed", error);
+    setMessage(error instanceof Error ? error.message : "Unable to draw a team.");
+  }
+};
 
   return (
     <main className="container">

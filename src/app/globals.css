@@ -163,15 +163,57 @@ h3 {
 }
 
 .statusBlue {
-  background: var(--primary-soft);
+  background: #b4d6ff;
+  border: 1px solid #b4d6ff;
+  color: #000000;
+}
+
+.statusDarkRed {
+  background: #991b1b;
+  border: 1px solid #991b1b;
+  color: #ffffff;
 }
 
 .statusRed {
-  background: var(--danger-soft);
+  background: #ef4444;
+  border: 1px solid #ef4444;
+  color: #ffffff;
+}
+
+.statusOrange {
+  background: #ff6c03;
+  border: 1px solid #ff6c03;
+  color: #000000;
+}
+
+.statusYellow {
+  background: #dfdc33;
+  border: 1px solid #dfdc33;
+  color: #000000;
 }
 
 .statusGreen {
-  background: var(--success-soft);
+  background: #0cce1c;
+  border: 1px solid #0cce1c;
+  color: #000000;
+}
+
+.statusBronze {
+  background: #af6a28;
+  border: 1px solid #af6a28;
+  color: #ffffff;
+}
+
+.statusSilver {
+  background: #9ca3af;
+  border: 1px solid #9ca3af;
+  color: #ffffff;
+}
+
+.statusGold {
+  background: #c79706;
+  border: 1px solid #c79706;
+  color: #713f12;
 }
 
 .adminTableHeader,

@@ -19,7 +19,23 @@ export const STAGE_POINTS: Record<TeamStage, number> = {
 export const getTeamPoints = (team: Team): number => STAGE_POINTS[team.stage];
 
 export const getUserTeams = (state: SweepstakeState, userId: string): Team[] =>
-  state.teams.filter((team) => team.assignedUserId === userId);
+  state.teams
+    .filter((team) => team.assignedUserId === userId)
+    .sort((a, b) => {
+      const aActive = a.stage === "in_tournament";
+      const bActive = b.stage === "in_tournament";
+
+      if (aActive !== bActive) {
+        return aActive ? -1 : 1;
+      }
+
+      const pointsDifference = getTeamPoints(b) - getTeamPoints(a);
+      if (pointsDifference !== 0) {
+        return pointsDifference;
+      }
+
+      return a.name.localeCompare(b.name);
+    });
 
 export const getUserTeamsStillAlive = (state: SweepstakeState, userId: string): number =>
   getUserTeams(state, userId).filter((team) => team.stage === "in_tournament").length;
@@ -83,14 +99,38 @@ export const updateTeamStage = (
   teams: state.teams.map((team) => (team.id === teamId ? { ...team, stage } : team)),
 });
 
-export const getTeamStatusClass = (team: Team): "statusBlue" | "statusRed" | "statusGreen" => {
-  if (team.stage === "winner") {
-    return "statusGreen";
+export const getTeamStatusClass = (
+  team: Team,
+):
+  | "statusBlue"
+  | "statusDarkRed"
+  | "statusRed"
+  | "statusOrange"
+  | "statusYellow"
+  | "statusGreen"
+  | "statusBronze"
+  | "statusSilver"
+  | "statusGold" => {
+  switch (team.stage) {
+    case "in_tournament":
+      return "statusBlue";
+    case "group_stage_exit":
+      return "statusDarkRed";
+    case "round_of_32":
+      return "statusRed";
+    case "round_of_16":
+      return "statusOrange";
+    case "quarter_final":
+      return "statusYellow";
+    case "fourth_place":
+      return "statusGreen";
+    case "third_place":
+      return "statusBronze";
+    case "runner_up":
+      return "statusSilver";
+    case "winner":
+      return "statusGold";
+    default:
+      return "statusBlue";
   }
-
-  if (team.stage === "in_tournament") {
-    return "statusBlue";
-  }
-
-  return "statusRed";
 };
