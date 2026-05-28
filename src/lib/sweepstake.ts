@@ -21,6 +21,9 @@ export const getTeamPoints = (team: Team): number => STAGE_POINTS[team.stage];
 export const getUserTeams = (state: SweepstakeState, userId: string): Team[] =>
   state.teams.filter((team) => team.assignedUserId === userId);
 
+export const getUserTeamsStillAlive = (state: SweepstakeState, userId: string): number =>
+  getUserTeams(state, userId).filter((team) => team.stage === "in_tournament").length;
+
 export const getUnassignedTeams = (state: SweepstakeState): Team[] =>
   state.teams.filter((team) => team.assignedUserId === null);
 
@@ -30,10 +33,16 @@ export const getDrawsRemaining = (state: SweepstakeState, userId: string): numbe
 export const getUserTotalPoints = (state: SweepstakeState, userId: string): number =>
   getUserTeams(state, userId).reduce((total, team) => total + getTeamPoints(team), 0);
 
-export const getLeaderboard = (state: SweepstakeState): Array<User & { points: number }> =>
+export const getLeaderboard = (
+  state: SweepstakeState,
+): Array<User & { points: number; teamsRemaining: number }> =>
   state.users
-    .map((user) => ({ ...user, points: getUserTotalPoints(state, user.id) }))
-    .sort((a, b) => b.points - a.points || a.name.localeCompare(b.name));
+    .map((user) => ({
+      ...user,
+      points: getUserTotalPoints(state, user.id),
+      teamsRemaining: getUserTeamsStillAlive(state, user.id),
+    }))
+    .sort((a, b) => b.points - a.points || b.teamsRemaining - a.teamsRemaining || a.name.localeCompare(b.name));
 
 export const drawTeamForUser = (
   state: SweepstakeState,

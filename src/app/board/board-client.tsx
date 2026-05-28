@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { useMemo, useState } from "react";
 import { useSearchParams } from "next/navigation";
 import { useSweepstakeState } from "@/lib/useSweepstakeState";
@@ -68,39 +69,65 @@ export default function BoardClientPage() {
         </div>
       </div>
 
-      <section className="card">
-        <h2>Signed in as {currentUser.name}</h2>
-        <p>Draws remaining: {drawsRemaining}</p>
-        <p>Total points: {currentUserPoints}</p>
-        <button type="button" onClick={handleDraw} className="buttonLink">
-          Draw random team
-        </button>
-        {message && <p className="muted">{message}</p>}
-      </section>
+      <section className="sectionGrid">
+  <div className="card">
+    <h2>Signed in as {currentUser.name}</h2>
+    <p>Draws remaining: {drawsRemaining}</p>
+    <p>Total points: {currentUserPoints}</p>
+    {drawsRemaining > 0 ? (
+      <button type="button" onClick={handleDraw} className="buttonLink">
+        Draw random team
+      </button>
+    ) : (
+      <p className="muted">All draws used for this user.</p>
+    )}
+    {message && <p className="muted">{message}</p>}
+  </div>
+
+  <div className="card">
+    <h2>Scoring Chart</h2>
+    <ul className="scoreChart">
+      <li><span>Group Stage Exit</span><strong>0 pts</strong></li>
+      <li><span>Round of 32 Exit</span><strong>1 pts</strong></li>
+      <li><span>Round of 16 Exit</span><strong>2 pts</strong></li>
+      <li><span>Quarter-Final Exit</span><strong>4 pts</strong></li>
+      <li><span>4th Place Finish</span><strong>6 pts</strong></li>
+      <li><span>3rd Place Finish</span><strong>7 pts</strong></li>
+      <li><span>2nd Place Finish</span><strong>8 pts</strong></li>
+      <li><span>1st Place Finish</span><strong>10 pts</strong></li>
+    </ul>
+  </div>
+</section>
 
       <section className="sectionGrid">
         <div className="card">
           <h2>
-            Your teams ({currentUserTeams.length}/{MAX_TEAMS_PER_USER})
+            Your Teams ({currentUserTeams.length}/{MAX_TEAMS_PER_USER})
           </h2>
           <ul className="teamList">
             {currentUserTeams.map((team) => (
               <li key={team.id} className={`teamItem ${getTeamStatusClass(team)}`}>
-                <span>{team.name}</span>
-                <span>{getTeamPoints(team)} pts</span>
-              </li>
+  <span className="teamLabel">
+    <Image src={team.badgePath} alt={team.name} width={24} height={24} />
+    <span>{team.name}</span>
+  </span>
+  <span>{getTeamPoints(team)} pts</span>
+</li>
             ))}
           </ul>
           {currentUserTeams.length === 0 && <p className="muted">No teams drawn yet.</p>}
         </div>
 
         <div className="card">
-          <h2>Remaining teams ({unassignedTeams.length})</h2>
+          <h2>Remaining Teams ({unassignedTeams.length})</h2>
           <ul className="teamList compact">
             {unassignedTeams.map((team) => (
               <li key={team.id} className={`teamItem ${getTeamStatusClass(team)}`}>
-                {team.name}
-              </li>
+  <span className="teamLabel">
+    <Image src={team.badgePath} alt={team.name} width={24} height={24} />
+    <span>{team.name}</span>
+  </span>
+</li>
             ))}
           </ul>
         </div>
@@ -111,9 +138,13 @@ export default function BoardClientPage() {
         <ol className="leaderboard">
           {leaderboard.map((entry) => (
             <li key={entry.id}>
-              <span>{entry.name}</span>
-              <strong>{entry.points} pts</strong>
-            </li>
+  <span>
+    {entry.name}
+    <br />
+    <span className="muted smallText">{entry.teamsRemaining}/8 Teams Remaining</span>
+  </span>
+  <strong>{entry.points} pts</strong>
+</li>
           ))}
         </ol>
       </section>
@@ -131,9 +162,12 @@ export default function BoardClientPage() {
                 <ul className="teamList compact">
                   {teams.map((team) => (
                     <li key={team.id} className={`teamItem ${getTeamStatusClass(team)}`}>
-                      <span>{team.name}</span>
-                      <span>{getTeamPoints(team)} pts</span>
-                    </li>
+  <span className="teamLabel">
+    <Image src={team.badgePath} alt={team.name} width={24} height={24} />
+    <span>{team.name}</span>
+  </span>
+  <span>{getTeamPoints(team)} pts</span>
+</li>
                   ))}
                 </ul>
                 {teams.length === 0 && <p className="muted">No teams assigned.</p>}

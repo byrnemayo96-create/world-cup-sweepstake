@@ -128,6 +128,40 @@ h3 {
   grid-template-columns: 1fr auto;
 }
 
+.teamLabel {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.textInput {
+  width: 100%;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 0.7rem 0.8rem;
+  background: #fff;
+  font-size: 1rem;
+}
+
+.smallText {
+  font-size: 0.85rem;
+}
+
+.scoreChart {
+  list-style: none;
+  display: grid;
+  gap: 0.20rem;
+}
+
+.scoreChart li {
+  display: grid;
+  grid-template-columns: 1fr auto;
+  gap: 0.20rem;
+  align-items: center;
+  background: #fff;
+  font-size: 0.9rem;
+}
+
 .statusBlue {
   background: var(--primary-soft);
 }
