@@ -1,7 +1,7 @@
 import { SweepstakeState, TeamStage, User } from "@/lib/types";
 
 export const PRESET_USERS: User[] = [
-  { id: "user-1", name: "Alex" },
+  { id: "user-1", name: "Astrid" },
   { id: "user-2", name: "Blake" },
   { id: "user-3", name: "Casey" },
   { id: "user-4", name: "Drew" },
